@@ -21,6 +21,8 @@ public class SimpleTest {
         driver.get(SOFTWARE_TESTING_URL);
     }
 
+
+
     @After
     public void  tearDown(){
         driver.quit();

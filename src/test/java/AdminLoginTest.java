@@ -23,7 +23,7 @@ public class AdminLoginTest extends BaseTest{
         driver.get(ADMIN_URL);
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
-        driver.findElement(By.name("login")).click();
+        driver.findElement(By.name("loginAdmin")).click();
         assertThat(driver.getTitle(), is("My Store"));
     }
 
@@ -67,7 +67,7 @@ public class AdminLoginTest extends BaseTest{
         driver.get(ADMIN_URL);
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
-        driver.findElement(By.name("login")).click();
+        driver.findElement(By.name("loginAdmin")).click();
         assertThat(driver.getTitle(), is("My Store"));
     }
 }

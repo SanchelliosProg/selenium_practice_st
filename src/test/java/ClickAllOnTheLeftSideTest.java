@@ -13,17 +13,11 @@ import static org.hamcrest.Matchers.is;
  */
 public class ClickAllOnTheLeftSideTest extends BaseTest{
 
-    private void login(){
-        driver.get(ADMIN_URL);
-        driver.findElement(By.name("username")).sendKeys("admin");
-        driver.findElement(By.name("password")).sendKeys("admin");
-        driver.findElement(By.name("login")).click();
-        assertThat(driver.getTitle(), is("My Store"));
-    }
+
 
     @Test
     public void clickAllTest(){
-        login();
+        loginAdmin();
         String boxLocator = "div#box-apps-menu-wrapper > ul";
         WebElement box = driver.findElement(By.cssSelector(boxLocator));
         List<WebElement> apps = box.findElements(By.cssSelector("li#app-"));
