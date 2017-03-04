@@ -17,14 +17,7 @@ import static org.hamcrest.Matchers.is;
 /**
  * Created by Александр on 23.02.2017.
  */
-public class AdminLoginTest {
-    private static WebDriver driver;
-    private String ADMIN_URL = "http://localhost/litecart/admin/";
-    @BeforeClass
-    public static void setUp(){
-        driver = TestApp.getInstance().getWebDriver();
-    }
-
+public class AdminLoginTest extends BaseTest{
     @Test
     public void loginToAdminConsoleTest(){
         driver.get(ADMIN_URL);
@@ -67,11 +60,6 @@ public class AdminLoginTest {
                 new FirefoxBinary(new File("C:\\Program Files (x86)\\Nightly\\firefox.exe")),
                 new FirefoxProfile(), caps);
         runTest(driver);
-        driver.quit();
-    }
-
-    @AfterClass
-    public static void tearDown(){
         driver.quit();
     }
 
