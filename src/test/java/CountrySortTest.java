@@ -70,7 +70,6 @@ public class CountrySortTest extends BaseTest {
             driver.get(country.getStatesUrl());
 
             List<WebElement> geoZoneRows = driver.findElements(By.cssSelector("table#table-zones.dataTable > tbody > tr:not(.header)"));
-            //geoZoneRows.remove(geoZoneRows.size() - 1);
             for (WebElement row : geoZoneRows) {
                 try{
                     String zoneName = row.findElement(By.cssSelector("td:nth-child(3) > select > option[selected=selected]")).getText();
