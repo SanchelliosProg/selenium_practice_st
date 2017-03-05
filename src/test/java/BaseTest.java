@@ -40,6 +40,14 @@ public class BaseTest {
         driver.quit();
     }
 
+    protected void debugWait(){
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     protected void log(Object ... objects) {
         for (Object obj : objects) {
             System.out.print(String.valueOf(obj) + " ");
