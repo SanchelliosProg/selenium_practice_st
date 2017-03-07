@@ -27,17 +27,19 @@ public class TestApp {
     }
 
     private void initWebDriver(){
-        webDriver = new ChromeDriver();
+        webDriver = getChromeDriver();
+    }
+
+    public static WebDriver getChromeDriver(){
+        return new ChromeDriver();
     }
 
     public static WebDriver getIEDriver(){
-        WebDriver driver = new InternetExplorerDriver();
-        return driver;
+        return new InternetExplorerDriver();
     }
 
     public static WebDriver getFirefoxDriver(){
-        WebDriver driver = new FirefoxDriver();
-        return driver;
+        return new FirefoxDriver();
     }
 
     public WebDriver getWebDriver() {

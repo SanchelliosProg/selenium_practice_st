@@ -2,7 +2,7 @@ import com.google.common.collect.Ordering;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.Country;
+import utils.HRefHelper;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -13,7 +13,7 @@ import java.util.*;
  * Created by Александр on 04.03.2017.
  */
 public class CountrySortTest extends BaseTest {
-    private static Set<Country> countriesWithStates = new HashSet<>();
+    private static Set<HRefHelper> countriesWithStates = new HashSet<>();
 
     @Test
     public void test1() {
@@ -28,9 +28,9 @@ public class CountrySortTest extends BaseTest {
             int numberOfZones = Integer.parseInt(row.findElement(By.cssSelector("td:nth-child(6)")).getText());
             if (numberOfZones > 0) {
                 String url = row.findElement(By.cssSelector("td:nth-child(5) a")).getAttribute("href");
-                Country country = new Country();
-                country.setCountryName(countryName);
-                country.setStatesUrl(url);
+                HRefHelper country = new HRefHelper();
+                country.setValue(countryName);
+                country.setUrl(url);
                 countriesWithStates.add(country);
             }
         }
@@ -39,16 +39,16 @@ public class CountrySortTest extends BaseTest {
 
     @Test
     public void test2() {
-        for (Country country : countriesWithStates) {
+        for (HRefHelper country : countriesWithStates) {
             List<String> states = new ArrayList<>();
-            driver.get(country.getStatesUrl());
-            log(country.getCountryName(), country.getStatesUrl());
+            driver.get(country.getUrl());
+            log(country.getValue(), country.getUrl());
             List<WebElement> statesRows = driver.findElements(By.cssSelector("table#table-zones.dataTable > tbody > tr:not(.header)"));
             for (WebElement row : statesRows) {
                 String stateName = row.findElement(By.cssSelector("td:nth-child(2)")).getText();
                 states.add(stateName);
             }
-            assertThat("States list of " + country.getCountryName() + " is not ordered", (Ordering.natural().isOrdered(states)), is(true));
+            assertThat("States list of " + country.getValue() + " is not ordered", (Ordering.natural().isOrdered(states)), is(true));
         }
     }
 
@@ -59,15 +59,15 @@ public class CountrySortTest extends BaseTest {
         countriesWithStates = new HashSet<>();
         List<WebElement> rows = driver.findElements(By.cssSelector("table.dataTable tbody tr.row"));
         for (WebElement row : rows) {
-            Country country = new Country();
+            HRefHelper country = new HRefHelper();
             String locator = "td:nth-child(3) a";
-            country.setCountryName(row.findElement(By.cssSelector(locator)).getText());
-            country.setStatesUrl(row.findElement(By.cssSelector(locator)).getAttribute("href"));
+            country.setValue(row.findElement(By.cssSelector(locator)).getText());
+            country.setUrl(row.findElement(By.cssSelector(locator)).getAttribute("href"));
             countriesWithStates.add(country);
             log(country.toString());
         }
-        for (Country country : countriesWithStates) {
-            driver.get(country.getStatesUrl());
+        for (HRefHelper country : countriesWithStates) {
+            driver.get(country.getUrl());
 
             List<WebElement> geoZoneRows = driver.findElements(By.cssSelector("table#table-zones.dataTable > tbody > tr:not(.header)"));
             for (WebElement row : geoZoneRows) {
@@ -78,7 +78,7 @@ public class CountrySortTest extends BaseTest {
                     assertThat(row.findElement(By.cssSelector("td a#add_zone")).isDisplayed(), is(true));
                 }
             }
-            assertThat("Zones of "+country.getCountryName()+" are not sorted", Ordering.natural().isOrdered(zoneNames), is(true));
+            assertThat("Zones of "+country.getValue()+" are not sorted", Ordering.natural().isOrdered(zoneNames), is(true));
         }
 
     }
