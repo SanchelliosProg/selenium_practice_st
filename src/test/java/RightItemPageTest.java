@@ -26,7 +26,6 @@ public class RightItemPageTest extends BaseTest {
     private final String MOST_POPULAR_ID = "#box-most-popular.box ";
     private final String BOX_CAMPAIGN_ID = "#box-campaigns ";
     private final String LATEST_PRODUCST_ID = "#box-latest-products ";
-    private final String LINE_THROUGH_STYLE = "line-through";
     private final String REGULAR_PRICE_CSS_STYLE = "regular-price";
     private final String CAMPAIGN_PRICE_CSS_STYLE = "campaign-price";
     private final String CHECK_PRICES_SIZES = "CHECK_PRICES_SIZES";
