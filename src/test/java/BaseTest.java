@@ -21,6 +21,7 @@ public class BaseTest {
     protected String MAIN_URL_EN = "http://localhost/litecart/en/";
     protected String COUNTRIES_URL = "http://localhost/litecart/admin/?app=countries&doc=countries";
     protected String GEOZONES_URL = "http://localhost/litecart/admin/?app=geo_zones&doc=geo_zones";
+    protected String CATALOG_URL = "http://localhost/litecart/admin/?app=catalog&doc=catalog";
 
 
     protected void loginAdmin(){
@@ -33,7 +34,7 @@ public class BaseTest {
 
     @AfterClass
     public static void tearDown(){
-        driver.quit();
+        //driver.quit();
     }
 
     protected void debugWait(){

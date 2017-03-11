@@ -21,14 +21,6 @@ public class RegisterTest extends BaseTest {
     private static String password = "admin666";
     private static int index = Randomizer.getUSAIndex();
 
-    private void pause() {
-        try {
-            Thread.sleep(2500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void disableCapture() {
         loginAdmin();
         driver.get("http://localhost/litecart/admin/?app=settings&doc=security");
