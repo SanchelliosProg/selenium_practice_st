@@ -4,10 +4,12 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Randomizer;
-
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import java.security.Key;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class RegisterTest extends BaseTest {
 
     @Test
     public void registerPersonTest() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
         driver.get(MAIN_URL_EN);
         driver.findElement(By.cssSelector("form a[href='http://localhost/litecart/en/create_account']")).click();
         WebElement input = driver.findElement(By.cssSelector("tbody tr td input"));
@@ -64,11 +67,14 @@ public class RegisterTest extends BaseTest {
         input = driver.findElement(By.cssSelector("table tbody tr td input[type='email']"));
         input.sendKeys(mail + Keys.TAB + "00000000000"+Keys.TAB+Keys.TAB+password+Keys.TAB+password);
         driver.findElement(By.cssSelector("button[type='submit'][name='create_account'][value='Create Account']")).click();
-        WebElement emailInput = driver.findElement(By.cssSelector("input[type='text'][name='email']"));
+        driver.findElement(By.cssSelector("div.content ul.list-vertical li a[href='http://localhost/litecart/en/logout']")).click();
+        WebElement emailInput = wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("input[type='text'][name='email']")));
         emailInput.clear();
+        emailInput.sendKeys(mail);
         WebElement passwordInput = driver.findElement(By.cssSelector("input[type='password']"));
         passwordInput.clear();
+        passwordInput.sendKeys(password);
         driver.findElement(By.cssSelector("button[type='submit'][name='login']")).click();
-        pause();
+        assertThat(driver.getTitle(), is("Online Store | My Store"));
     }
 }
