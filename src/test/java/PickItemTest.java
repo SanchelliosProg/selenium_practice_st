@@ -10,4 +10,12 @@ public class PickItemTest extends BaseTest {
         driver.get(MAIN_URL_EN);
         driver.findElement(By.cssSelector("div#box-most-popular div.content a.link")).click();
     }
+
+    private void pause(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
