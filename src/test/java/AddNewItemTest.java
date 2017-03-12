@@ -55,7 +55,6 @@ public class AddNewItemTest extends BaseTest {
         select = new Select(driver.findElement(By.cssSelector("select[name='purchase_price_currency_code']")));
         select.selectByVisibleText("US Dollars");
         driver.findElement(By.cssSelector("button[type='submit'][name='save']")).click();
-        pause();
     }
 
     private String getAbsolutePathToTheFile(String relativePath) throws IOException {
@@ -63,11 +62,4 @@ public class AddNewItemTest extends BaseTest {
         return pic.getCanonicalPath();
     }
 
-    private void pause(){
-        try {
-            Thread.sleep(32000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }
