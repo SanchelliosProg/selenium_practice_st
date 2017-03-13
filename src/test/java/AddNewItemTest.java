@@ -35,8 +35,10 @@ public class AddNewItemTest extends BaseTest {
         input.sendKeys("5");
         input = driver.findElement(By.cssSelector("input[type='file'][name='new_images[]']"));
         try {
-            input.sendKeys(getAbsolutePathToTheFile(".\\..\\resources\\appleii-system.jpg"));
-        } catch (IOException e) {
+            File pic = new File(".\\..\\resources\\appleii-system.jpg");
+            input.sendKeys(pic.getCanonicalPath());
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
         input = driver.findElement(By.cssSelector("input[type='date'][name='date_valid_from']"));
@@ -55,11 +57,6 @@ public class AddNewItemTest extends BaseTest {
         select = new Select(driver.findElement(By.cssSelector("select[name='purchase_price_currency_code']")));
         select.selectByVisibleText("US Dollars");
         driver.findElement(By.cssSelector("button[type='submit'][name='save']")).click();
-    }
-
-    private String getAbsolutePathToTheFile(String relativePath) throws IOException {
-        File pic = new File(relativePath);
-        return pic.getCanonicalPath();
     }
 
 }
