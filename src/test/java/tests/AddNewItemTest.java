@@ -1,3 +1,5 @@
+package tests;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -7,7 +9,6 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.io.File;
 import java.io.IOException;
-import java.security.Key;
 
 /**
  * Created by Александр on 11.03.2017.
@@ -57,6 +58,8 @@ public class AddNewItemTest extends BaseTest {
         select = new Select(driver.findElement(By.cssSelector("select[name='purchase_price_currency_code']")));
         select.selectByVisibleText("US Dollars");
         driver.findElement(By.cssSelector("button[type='submit'][name='save']")).click();
+
+        printBrowserLogs();
     }
 
 }

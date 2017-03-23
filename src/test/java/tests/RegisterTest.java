@@ -1,5 +1,6 @@
+package tests;
+
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -10,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.Randomizer;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import java.security.Key;
+
 import java.util.List;
 
 /**

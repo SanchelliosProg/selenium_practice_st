@@ -1,3 +1,5 @@
+package tests;
+
 import com.google.common.collect.Ordering;
 import org.junit.Test;
 import org.openqa.selenium.By;

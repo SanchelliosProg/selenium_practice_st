@@ -1,14 +1,14 @@
+package tests;
+
 import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import utils.TestApp;
+import appmanager.ApplicationManager;
 
-import java.beans.Transient;
 import java.io.File;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,14 +29,14 @@ public class AdminLoginTest extends BaseTest{
 
     @Test
     public void tryIETest(){
-        WebDriver driver = TestApp.getIEDriver();
+        WebDriver driver = ApplicationManager.getIEDriver();
         runTest(driver);
         driver.quit();
     }
 
     @Test
     public void tryFirefoxDriver(){
-        WebDriver driver = TestApp.getFirefoxDriver();
+        WebDriver driver = ApplicationManager.getFirefoxDriver();
         runTest(driver);
         driver.quit();
     }

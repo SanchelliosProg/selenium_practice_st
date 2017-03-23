@@ -1,6 +1,8 @@
+package tests;
+
 import org.junit.*;
 import org.openqa.selenium.WebDriver;
-import utils.TestApp;
+import appmanager.ApplicationManager;
 
 
 /**
@@ -12,7 +14,7 @@ public class SimpleTest {
 
     @Before
     public void setUp(){
-        driver = TestApp.getInstance().getWebDriver();
+        driver = ApplicationManager.getInstance().getWebDriver();
     }
 
     @Test

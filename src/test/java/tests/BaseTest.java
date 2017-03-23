@@ -1,12 +1,14 @@
+package tests;
+
+import appmanager.AdminCatalogHelper;
+import appmanager.AdminNavigationHelper;
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.TestApp;
-
-import java.util.Objects;
-import java.util.concurrent.TimeUnit;
+import appmanager.ApplicationManager;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -15,8 +17,10 @@ import static org.hamcrest.Matchers.is;
  * Created by Александр on 04.03.2017.
  */
 public class BaseTest {
-    protected static WebDriver driver = TestApp.getInstance().getWebDriver();;
+    protected static EventFiringWebDriver driver = ApplicationManager.getInstance().getWebDriver();
     protected static WebDriverWait wait;
+    protected AdminNavigationHelper adminNavigationHelper = ApplicationManager.getInstance().getAdminNavigationHelper();
+    protected AdminCatalogHelper adminCatalogHelper = ApplicationManager.getInstance().getAdminCatalogHelper();
     protected String ADMIN_URL = "http://localhost/litecart/admin/";
     protected String MAIN_URL_EN = "http://localhost/litecart/en/";
     protected String COUNTRIES_URL = "http://localhost/litecart/admin/?app=countries&doc=countries";
@@ -32,17 +36,14 @@ public class BaseTest {
         assertThat(driver.getTitle(), is("My Store"));
     }
 
-    @AfterClass
-    public static void tearDown(){
-        driver.quit();
+    protected WebDriverWait getWait(int seconds){
+        return new WebDriverWait(driver, seconds);
     }
 
-    protected void debugWait(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    @AfterClass
+    public static void tearDown(){
+        printBrowserLogs();
+        driver.quit();
     }
 
     protected void log(Object ... objects) {
@@ -50,5 +51,11 @@ public class BaseTest {
             System.out.print(String.valueOf(obj) + " ");
         }
         System.out.println();
+    }
+
+    protected static void printBrowserLogs(){
+        for (LogEntry l : driver.manage().logs().get("browser").getAll()) {
+            System.out.println(l);
+        }
     }
 }

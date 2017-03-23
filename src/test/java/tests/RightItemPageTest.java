@@ -1,3 +1,5 @@
+package tests;
+
 import com.gargoylesoftware.htmlunit.javascript.configuration.BrowserName;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -6,7 +8,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import utils.HRefHelper;
 import utils.MultiplePricesHRefHelper;
-import utils.TestApp;
+import appmanager.ApplicationManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,10 +43,10 @@ public class RightItemPageTest extends BaseTest {
             case CHROME:
                 break;
             case FF:
-                driver = TestApp.getFirefoxDriver();
+                driver = ApplicationManager.getFirefoxDriver();
                 break;
             case IE:
-                driver = TestApp.getIEDriver();
+                driver = ApplicationManager.getIEDriver();
                 break;
             default:
                 break;
