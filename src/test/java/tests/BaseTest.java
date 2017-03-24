@@ -2,13 +2,17 @@ package tests;
 
 import appmanager.AdminCatalogHelper;
 import appmanager.AdminNavigationHelper;
+import appmanager.NavigationHelper;
 import org.junit.AfterClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.logging.LogEntry;
+import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import appmanager.ApplicationManager;
+import pages.CartPage;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -21,6 +25,10 @@ public class BaseTest {
     protected static WebDriverWait wait;
     protected AdminNavigationHelper adminNavigationHelper = ApplicationManager.getInstance().getAdminNavigationHelper();
     protected AdminCatalogHelper adminCatalogHelper = ApplicationManager.getInstance().getAdminCatalogHelper();
+    protected NavigationHelper navigationHelper = ApplicationManager.getInstance().getNavigationHelper();
+    protected CartPage cartPage = ApplicationManager.getInstance().getCartPage();
+
+
     protected String ADMIN_URL = "http://localhost/litecart/admin/";
     protected String MAIN_URL_EN = "http://localhost/litecart/en/";
     protected String COUNTRIES_URL = "http://localhost/litecart/admin/?app=countries&doc=countries";

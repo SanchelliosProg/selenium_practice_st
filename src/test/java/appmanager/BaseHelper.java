@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Александр on 23.03.2017.
  */
 public class BaseHelper {
-    private WebDriver driver;
+    protected WebDriver driver;
 
     public BaseHelper(WebDriver driver) {
         this.driver = driver;

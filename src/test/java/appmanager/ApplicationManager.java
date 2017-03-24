@@ -8,15 +8,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import pages.CartPage;
 
 /**
  * Created by Александр on 23.02.2017.
  */
 public class ApplicationManager {
     private static ApplicationManager instance;
+    private NavigationHelper navigationHelper;
     private AdminNavigationHelper adminNavigationHelper;
     private AdminCatalogHelper adminCatalogHelper;
     private EventFiringWebDriver webDriver;
+    private CartPage cartPage;
 
     public static ApplicationManager getInstance(){
         if(instance == null){
@@ -27,8 +30,10 @@ public class ApplicationManager {
 
     private ApplicationManager(){
         initWebDriver();
+        navigationHelper = new NavigationHelper(getWebDriver());
         adminNavigationHelper = new AdminNavigationHelper(getWebDriver());
         adminCatalogHelper = new AdminCatalogHelper(getWebDriver());
+        cartPage = new CartPage(getWebDriver());
     }
 
     private void initWebDriver(){
@@ -63,6 +68,14 @@ public class ApplicationManager {
 
     public AdminCatalogHelper getAdminCatalogHelper() {
         return adminCatalogHelper;
+    }
+
+    public NavigationHelper getNavigationHelper() {
+        return navigationHelper;
+    }
+
+    public CartPage getCartPage() {
+        return cartPage;
     }
 
     public static class MyListener extends AbstractWebDriverEventListener {
